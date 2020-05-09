@@ -15,8 +15,8 @@ public class Task2Tests {
                 {4,5,6,2},
                 {7,1,1,1},
                 {1,2,3,3}};
-        int[][] actual = Task2.sortStrings(multiDimArray);
-        Assertions.assertArrayEquals(expected,actual);
+        Task2.sortStrings(multiDimArray);
+        Assertions.assertArrayEquals(expected,multiDimArray);
     }
 
     @Test
@@ -30,8 +30,8 @@ public class Task2Tests {
                 {-7,1,1,1},
                 {4,-5,-6,2},
         };
-        int[][] actual = Task2.sortStrings(multiDimArray);
-        Assertions.assertArrayEquals(expected,actual);
+        Task2.sortStrings(multiDimArray);
+        Assertions.assertArrayEquals(expected,multiDimArray);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class Task2Tests {
         int[][] expected = {
                 {1,2,-3,3},
                 };
-        int[][] actual = Task2.sortStrings(multiDimArray);
-        Assertions.assertArrayEquals(expected,actual);
+        Task2.sortStrings(multiDimArray);
+        Assertions.assertArrayEquals(expected,multiDimArray);
     }
 }

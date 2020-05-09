@@ -1,10 +1,10 @@
 package lesson1;
 
 public class Task2 {
-
-    // CPU: O(n3)
+    // n = multiDimArray.length
+    // CPU: O(n^2 * m)
     // RAM: O(1)
-    public static int[][] sortStrings (int [][] multiDimArray) {
+    public static void sortStrings (int [][] multiDimArray) {
         for (int i = multiDimArray.length-1; i >= 0; i--) {
             for (int j = 1; j <= i; j++) {
                 int sum1 = 0;
@@ -20,6 +20,5 @@ public class Task2 {
                 }
             }
         }
-        return multiDimArray;
     }
 }

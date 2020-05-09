@@ -1,11 +1,8 @@
 package lesson1;
 
 public class Task1 {
-    public static int sum(int a, int b) {
-        return a + b;
-    }
 
-    //CPU: O(n)
+    //CPU: O(n + m)
     //RAM: O(1)
     public static int[] mergeSortedArrays(int[] a, int[] b) {
         int[] c = new int[a.length + b.length];
@@ -18,9 +15,9 @@ public class Task1 {
                 } else if (a[j] > b[k]) {
                     c[i] = b[k++];
                 }
-            } else if (j == a.length && k < b.length) {
+            } else if (k < b.length) {
                 c[i] = b[k++];
-            } else if (k == b.length && j < a.length) {
+            } else if (j < a.length) {
                 c[i] = a[j++];
             }
         }
