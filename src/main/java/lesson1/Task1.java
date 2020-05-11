@@ -3,7 +3,7 @@ package lesson1;
 public class Task1 {
 
     //CPU: O(n + m)
-    //RAM: O(1)
+    //RAM: O(n + m)
     public static int[] mergeSortedArrays(int[] a, int[] b) {
         int[] c = new int[a.length + b.length];
 
