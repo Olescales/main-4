@@ -2,7 +2,8 @@ package lesson1;
 
 public class Task2 {
     // n = multiDimArray.length
-    // CPU: O(n^2)
+    // m = multiDimArray[n].length
+    // CPU: O(n * m + n ^ 2)
     // RAM: O(n)
     public static void sortStrings (int [][] multiDimArray) {
 
