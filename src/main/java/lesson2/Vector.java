@@ -10,7 +10,7 @@ public class Vector<T> {
     }
 
     //CPU O(n)
-    //CPU O(n)
+    //RAM O(n)
     public void add (T t) {
         if (realArraySize == dynamicArray.length) {
             T[] replacementArray = (T[]) new Object[dynamicArray.length * 2];
@@ -44,7 +44,9 @@ public class Vector<T> {
     //RAM O(n)
     public void remove (int index) {
         if (index == 0 && realArraySize == 1) {
-            dynamicArray = (T[]) new Object[5];
+            for (int i = 0; i < dynamicArray.length; i++) {
+                dynamicArray[i] = null;
+            }
         } else if (index >= 0 && index < realArraySize) {
             T[] tempArray = (T[])new Object[realArraySize - 1];
             System.arraycopy(dynamicArray,0,tempArray,0, index);
@@ -92,10 +94,12 @@ public class Vector<T> {
         }
     }
 
-    //CPU O(1)
+    //CPU O(n)
     //RAM O(1)
     public void clear () {
         realArraySize = 0;
-        dynamicArray = (T[]) new Object[5];
+        for (int i = 0; i < dynamicArray.length; i++) {
+            dynamicArray[i] = null;
+        }
     }
 }

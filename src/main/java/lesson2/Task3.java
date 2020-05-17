@@ -3,12 +3,10 @@ package lesson2;
 public class Task3 {
 
     //n = salaries.length
-    //m = countArray.length
-    //k ^ 2 = countArray.sort(comparator)
-    //CPU O(m * k ^ 2)
+    //CPU O(n ^ 2)
 
-    //n = countArray
-    //m = countArray[].size
+    //n = max position in salaries
+    //m = amount of salaries for each position
     //RAM O(n * m )
     public static int[] getArrayMedianSalary (Salary[] salaries) {
 
