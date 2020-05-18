@@ -5,9 +5,9 @@ public class Task3 {
     //n = salaries.length
     //CPU O(n ^ 2)
 
-    //n = max position in salaries
-    //m = amount of salaries for each position
-    //RAM O(n * m )
+    //n = salaries.length
+    //m = amount of positions
+    //RAM O(n + m)
     public static int[] getArrayMedianSalary (Salary[] salaries) {
 
         int maxAmountPositionId = 0;
