@@ -41,14 +41,11 @@ public class Vector<T> {
     }
 
     //CPU O(n)
-    //RAM O(n)
+    //RAM O(1)
     public void remove (int index) {
         if (index >= 0 && index < realArraySize) {
-            T[] tempArray = (T[])new Object[realArraySize - 1];
             realArraySize--;
-            System.arraycopy(dynamicArray,0,tempArray,0, index);
-            System.arraycopy(dynamicArray, index + 1 , tempArray, index, realArraySize - index - 1);
-            dynamicArray = tempArray;
+            System.arraycopy(dynamicArray, index + 1, dynamicArray, index, realArraySize - index);
         }
     }
 
