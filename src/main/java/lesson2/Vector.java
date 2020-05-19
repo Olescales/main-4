@@ -73,18 +73,10 @@ public class Vector<T> {
         return result;
     }
 
-    //CPU O(n * n)
-    //RAM O(1)
+    //CPU O(n * log n)
+    //RAM O(n)
     public void sort (Comparator<T> comparator) {
-        for (int i = realArraySize - 1; i >= 0; i--) {
-            for (int j = 1; j < realArraySize; j++) {
-                if (comparator.compare(dynamicArray[j-1], dynamicArray[j]) < 0) {
-                    T t = dynamicArray[j];
-                    dynamicArray[j] = dynamicArray[j-1];
-                    dynamicArray[j-1] = t;
-                }
-            }
-        }
+        mergeSort(dynamicArray, (T[])new Object[realArraySize],0,realArraySize, comparator);
     }
 
     //CPU O(n)
@@ -94,5 +86,38 @@ public class Vector<T> {
             dynamicArray[i] = null;
         }
         realArraySize = 0;
+    }
+
+    //CPU O(n * log n)
+    //RAM O(1)
+    private void mergeSort (T[] arrayForSort, T[] tempArray, int left, int right, Comparator<T> comparator) {
+
+        if (left + 1 == right) {
+            return;
+        }
+        int middle = left + (right - left) / 2;
+
+        mergeSort(arrayForSort,tempArray,left,middle,comparator);
+        mergeSort(arrayForSort,tempArray,middle,right,comparator);
+        merge(arrayForSort,tempArray,left,middle,right,comparator);
+    }
+
+    //CPU O(n)
+    //RAM O(1)
+    private void merge (T[] arrayForSort, T[] tempArray, int left, int middle, int right, Comparator<T> comparator) {
+        for (int i = left, j = left, k = middle; i < right; i++) {
+            if (j < middle && k < right) {
+                if (comparator.compare(arrayForSort[j],arrayForSort[k]) > 0) {
+                    tempArray[i] = arrayForSort[j++];
+                } else {
+                    tempArray[i] = arrayForSort[k++];
+                }
+            } else if (k < right) {
+                tempArray[i] = arrayForSort[k++];
+            } else if (j < middle) {
+                tempArray[i] = arrayForSort[j++];
+            }
+        }
+        System.arraycopy(tempArray,left,arrayForSort,left,right - left);
     }
 }
