@@ -18,4 +18,11 @@ class Task3Test {
         int number = Task3.getMinNumberWithMaxRepeat(numbers);
         Assertions.assertEquals(2, number);
     }
+
+    @Test
+    void getMinNumberWithMaxRepeatManyNumbersInArraySecondVariant() {
+        int[] numbers = new int[]{1, 2, 2, 2, 2, 2, 2, 2, 2};
+        int number = Task3.getMinNumberWithMaxRepeat(numbers);
+        Assertions.assertEquals(2, number);
+    }
 }

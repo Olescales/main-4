@@ -1,5 +1,7 @@
 package lesson2;
 
+import lesson1.Event;
+import lesson1.Task3;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +48,7 @@ class VectorTest {
     }
 
     @Test
-    void remove() {
+    void removeIsOk() {
         Vector<Integer> vector = getVectorWithData();
         vector.remove(1);
         Assertions.assertArrayEquals(new Integer[]{1, 3}, vector.toArray());
@@ -56,7 +58,7 @@ class VectorTest {
     void sortDescending() {
         Vector<Integer> vector = getVectorWithData();
         vector.sort((o1, o2) -> o1 - o2);
-        Assertions.assertArrayEquals(new Integer[]{3, 2, 1}, vector.toArray());
+        Assertions.assertArrayEquals(new Integer[]{1, 2, 3}, vector.toArray());
     }
 
     @Test
@@ -69,7 +71,26 @@ class VectorTest {
         vector.add(5);
 
         vector.sort((o1, o2) -> o2 - o1);
-        Assertions.assertArrayEquals(new Integer[]{0, 3, 5, 6, 22}, vector.toArray());
+        Assertions.assertArrayEquals(new Integer[]{22, 6, 5, 3, 0}, vector.toArray());
+    }
+
+    @Test
+    public void sortedArraySecondVariant() {
+        Event eventA = new Event(2020, 2, 3, "A");
+        Event eventB = new Event(2020, 2, 2, "B");
+        Event eventC = new Event(2020, 2, 2, "C");
+        Event eventD = new Event(2020, 2, 2, "D");
+        Event eventE = new Event(2020, 2, 1, "E");
+        Vector<Event> events = new Vector<>();
+        events.add(eventA);
+        events.add(eventB);
+        events.add(eventC);
+        events.add(eventD);
+        events.add(eventE);
+        events.sort((event1, event2) -> event1.getDay() - event2.getDay());
+        Event[] expected = {eventE, eventB, eventC, eventD, eventA};
+
+        Assertions.assertArrayEquals(expected, events.toArray());
     }
 
     @Test

@@ -12,6 +12,13 @@ public class Event {
         this.day = day;
     }
 
+    public Event(int year, int month, int day, String title) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.title = title;
+    }
+
     public int getYear() {
         return year;
     }

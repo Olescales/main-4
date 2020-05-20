@@ -1,2 +1,2 @@
-Bubble sort time :293 in ms
-Merge sort time :4 in ms
+Bubble sort time :21311 in ms
+Merge sort time :16 in ms

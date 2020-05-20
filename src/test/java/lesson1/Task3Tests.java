@@ -20,6 +20,20 @@ public class Task3Tests {
     }
 
     @Test
+    public void sortedArraySecondVariant() {
+        Event eventA = new Event(2020, 2, 3, "A");
+        Event eventB = new Event(2020, 2, 2, "B");
+        Event eventC = new Event(2020, 2, 2, "C");
+        Event eventD = new Event(2020, 2, 2, "D");
+        Event eventE = new Event(2020, 2, 1, "E");
+        Event[] events = {eventA, eventB, eventC, eventD, eventE};
+
+        Task3.sortEvents(events);
+        Event[] expected = {eventE, eventB, eventC, eventD, eventA};
+        Assertions.assertArrayEquals(expected, events);
+    }
+
+    @Test
     public void sortedArrayOneElementInArray() {
         Event event1 = new Event(1988, 30, 9);
 
