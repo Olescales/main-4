@@ -78,7 +78,7 @@ public class Vector<T> {
     public void sort (Comparator<T> comparator) {
         for (int i = realArraySize - 1; i >= 0; i--) {
             for (int j = 1; j < realArraySize; j++) {
-                if (comparator.compare(dynamicArray[j-1], dynamicArray[j]) < 0) {
+                if (comparator.compare(dynamicArray[j-1], dynamicArray[j]) >= 0) {
                     T t = dynamicArray[j];
                     dynamicArray[j] = dynamicArray[j-1];
                     dynamicArray[j-1] = t;
