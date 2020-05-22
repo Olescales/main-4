@@ -11,10 +11,10 @@ public class Vector<T> {
 
     //CPU O(1)
     //RAM O(1)
-    public void add (T t) {
+    public void add(T t) {
         if (realArraySize == dynamicArray.length) {
             T[] replacementArray = (T[]) new Object[dynamicArray.length * 2];
-            System.arraycopy(dynamicArray,0,replacementArray,0, realArraySize);
+            System.arraycopy(dynamicArray, 0, replacementArray, 0, realArraySize);
             dynamicArray = replacementArray;
         }
         dynamicArray[realArraySize++] = t;
@@ -34,7 +34,7 @@ public class Vector<T> {
 
     //CPU O(1)
     //RAM O(1)
-    public void set (T t, int index) {
+    public void set(T t, int index) {
         if (index >= 0 && index < realArraySize) {
             dynamicArray[index] = t;
         }
@@ -42,21 +42,22 @@ public class Vector<T> {
 
     //CPU O(n)
     //RAM O(1)
-    public void remove (int index) {
+    public void remove(int index) {
         if (index >= 0 && index < realArraySize) {
             realArraySize--;
             System.arraycopy(dynamicArray, index + 1, dynamicArray, index, realArraySize - index);
+            dynamicArray[realArraySize] = null;
         }
     }
 
     //CPU O(n)
     //RAM O(n)
-    public void add (T t, int index) {
-        if (index >= 0 && index < realArraySize ) {
-            T[] tempArray = (T[])new Object[realArraySize + 1];
-            System.arraycopy(dynamicArray,0,tempArray,0, index);
+    public void add(T t, int index) {
+        if (index >= 0 && index < realArraySize) {
+            T[] tempArray = (T[]) new Object[realArraySize + 1];
+            System.arraycopy(dynamicArray, 0, tempArray, 0, index);
             tempArray[index] = t;
-            System.arraycopy(dynamicArray,index ,tempArray,index + 1, realArraySize - index);
+            System.arraycopy(dynamicArray, index, tempArray, index + 1, realArraySize - index);
             realArraySize++;
             dynamicArray = tempArray;
         }
@@ -68,31 +69,52 @@ public class Vector<T> {
     public Object[] toArray() {
         Object[] result = new Object[realArraySize];
         if (realArraySize >= 0) {
-            System.arraycopy(dynamicArray,0,result,0, realArraySize);
+            System.arraycopy(dynamicArray, 0, result, 0, realArraySize);
         }
         return result;
     }
 
-    //CPU O(n * n)
-    //RAM O(1)
-    public void sort (Comparator<T> comparator) {
-        for (int i = realArraySize - 1; i >= 0; i--) {
-            for (int j = 1; j < realArraySize; j++) {
-                if (comparator.compare(dynamicArray[j-1], dynamicArray[j]) < 0) {
-                    T t = dynamicArray[j];
-                    dynamicArray[j] = dynamicArray[j-1];
-                    dynamicArray[j-1] = t;
-                }
-            }
-        }
+    //CPU O(n * log n)
+    //RAM O(n)
+    public void sort(Comparator<T> comparator) {
+        mergeSort(dynamicArray, (T[]) new Object[realArraySize], 0, realArraySize, comparator);
     }
 
     //CPU O(n)
     //RAM O(1)
-    public void clear () {
+    public void clear() {
         for (int i = 0; i < realArraySize; i++) {
             dynamicArray[i] = null;
         }
         realArraySize = 0;
+    }
+
+    private void mergeSort(T[] arrayForSort, T[] tempArray, int left, int right, Comparator<T> comparator) {
+
+        if (left + 1 == right) {
+            return;
+        }
+        int middle = left + (right - left) / 2;
+
+        mergeSort(arrayForSort, tempArray, left, middle, comparator);
+        mergeSort(arrayForSort, tempArray, middle, right, comparator);
+        merge(arrayForSort, tempArray, left, middle, right, comparator);
+    }
+
+    private void merge(T[] arrayForSort, T[] tempArray, int left, int middle, int right, Comparator<T> comparator) {
+        for (int i = left, j = left, k = middle; i < right; i++) {
+            if (j < middle && k < right) {
+                if (comparator.compare(arrayForSort[j], arrayForSort[k]) <= 0) {
+                    tempArray[i] = arrayForSort[j++];
+                } else {
+                    tempArray[i] = arrayForSort[k++];
+                }
+            } else if (j < middle) {
+                tempArray[i] = arrayForSort[j++];
+            } else if (k < right) {
+                tempArray[i] = arrayForSort[k++];
+            }
+        }
+        System.arraycopy(tempArray, left, arrayForSort, left, right - left);
     }
 }
