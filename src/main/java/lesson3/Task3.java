@@ -25,7 +25,7 @@ public class Task3 {
                 counter = 0;
             }
             counter++;
-            if (counter > maxCounter || (counter == maxCounter && tempNumber < numberForReturn)) {
+            if (counter > maxCounter) {
                 maxCounter = counter;
                 numberForReturn = tempNumber;
             }
